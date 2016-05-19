@@ -4,6 +4,7 @@
 namespace Bogardo\Mailgun\Mailgun;
 
 use Config;
+use Http\Adapter\Guzzle6\Client;
 use Mailgun\Mailgun as MailgunCore;
 
 abstract class MailgunApi
@@ -23,7 +24,7 @@ abstract class MailgunApi
                 $apiKey = config('mailgun.api_key');
             }
 
-            $this->mailgun = new MailgunCore($apiKey);
+            $this->mailgun = new MailgunCore($apiKey, new Client());
         }
 
         return $this->mailgun;
